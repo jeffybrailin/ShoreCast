@@ -1,7 +1,8 @@
-﻿from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings
 from functools import lru_cache
 
 class Settings(BaseSettings):
+    google_places_api_key: str = ""
     database_url: str = "postgresql://shorecast:shorecast_secret@localhost:5432/shorecast"
     redis_url: str = "redis://localhost:6379"
     groq_api_key: str = ""

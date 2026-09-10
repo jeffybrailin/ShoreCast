@@ -1,43 +1,52 @@
-﻿"use client";
-import { Wrench, CheckCircle, Loader2 } from "lucide-react";
+"use client";
 
 interface AgentThoughtProps {
-  type: "tool_start" | "tool_end" | "token" | "start" | "done";
+  type: string;
   tool?: string;
   input?: string;
   agent?: string;
+  content?: string;
 }
 
-export default function AgentThought({ type, tool, input, agent }: AgentThoughtProps) {
+const TOOL_ICONS: Record<string, string> = {
+  lookup_beach_by_name: "🔍",
+  list_beaches_by_state: "📋",
+  get_beach_conditions: "🌊",
+  find_nearby_amenities: "📍",
+  find_tourist_attractions: "🎯",
+  calculate_beach_suitability: "📊",
+};
+
+export default function AgentThought({ type, tool }: AgentThoughtProps) {
   if (type === "start") {
     return (
-      <div className="flex items-center gap-2 text-xs text-[#888] py-1 font-mono">
-        <div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
-        <span>{agent === "sentinel" ? "🛡️ Sentinel" : "🧭 Planner"} Agent activated</span>
+      <div className="flex items-center gap-2 text-[11px] font-semibold mb-1" style={{ color: "var(--c-muted)" }}>
+        <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+        Shorecast AI is thinking...
       </div>
     );
   }
-
-  if (type === "tool_start") {
+  if (type === "tool_start" && tool) {
+    const icon = TOOL_ICONS[tool] || "⚙️";
+    const label = tool.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
     return (
-      <div className="flex items-start gap-2 py-1.5 px-3 bg-[#0a0a0a] border border-[#1a1a1a] rounded text-xs font-mono">
-        <Loader2 className="w-3 h-3 mt-0.5 text-blue-400 animate-spin shrink-0" />
-        <div>
-          <span className="text-blue-400">{tool}</span>
-          {input && <p className="text-[#666] mt-0.5 truncate max-w-xs">{input}</p>}
-        </div>
+      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold mr-1 mb-1"
+        style={{ background: "rgba(251,191,36,0.15)", border: "1px solid rgba(251,191,36,0.3)", color: "#D97706" }}>
+        <span>{icon}</span>
+        <span>{label}</span>
+        <span className="opacity-60 text-[9px]">Running...</span>
       </div>
     );
   }
-
-  if (type === "tool_end") {
+  if (type === "tool_end" && tool) {
+    const label = tool.replace(/_/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
     return (
-      <div className="flex items-center gap-2 text-xs font-mono text-[#555]">
-        <CheckCircle className="w-3 h-3 text-green-500" />
-        <span>{tool} completed</span>
+      <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[10px] font-bold mr-1 mb-1"
+        style={{ background: "rgba(34,197,94,0.12)", border: "1px solid rgba(34,197,94,0.25)", color: "#16A34A" }}>
+        <span>✓</span>
+        <span>{label}</span>
       </div>
     );
   }
-
   return null;
 }

@@ -1,4 +1,4 @@
-﻿export const MAP_STYLE = "https://demotiles.maplibre.org/style.json";
+export const MAP_STYLE = "https://demotiles.maplibre.org/style.json";
 export const DEFAULT_CENTER: [number, number] = [80.2785, 20.5937];
 export const DEFAULT_ZOOM = 4.5;
 

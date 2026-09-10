@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { useEffect, useRef, useCallback } from "react";
 import { useShorecastStore } from "@/lib/store";
@@ -19,7 +19,6 @@ export default function ShorecastMap({ beaches }: ShorecastMapProps) {
     if (!mapRef.current || mapInstanceRef.current) return;
 
     const maplibregl = (await import("maplibre-gl")).default;
-    await import("maplibre-gl/dist/maplibre-gl.css");
 
     const map = new maplibregl.Map({
       container: mapRef.current,

@@ -1,4 +1,4 @@
-﻿import httpx
+import httpx
 import logging
 from cache.redis_client import cache_get, cache_set
 

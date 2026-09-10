@@ -1,4 +1,4 @@
-﻿from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query
 from services.open_meteo import get_marine_data, get_weather_data
 from services.incois import get_incois_alerts
 from services.overpass import query_amenities, query_tourist_attractions

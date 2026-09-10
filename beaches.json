@@ -1,0 +1,103 @@
+[
+  {
+    "state": "Maharashtra",
+    "beaches": [
+      "Juhu Beach", "Marine Drive/Chowpatty Beach", "Gorai Beach", "Madh Island Beach", 
+      "Aksa Beach", "Versova Beach", "Alibaug Beach", "Nagaon Beach", "Kashid Beach", 
+      "Murud Beach", "Tarkarli Beach", "Malvan Beach", "Devbagh Beach", "Guhagar Beach", 
+      "Ganpatipule Beach", "Shrivardhan Beach", "Harihareshwar Beach", "Dahanu Beach", "Kelva Beach"
+    ]
+  },
+  {
+    "state": "Tamil Nadu",
+    "beaches": [
+      "Marina Beach", "Elliot’s Beach (Besant Nagar)", "Kovalam Beach", "Golden Beach", 
+      "Mahabalipuram Beach", "Kanyakumari Beach", "Rameshwaram Beach", "Dhanushkodi Beach", 
+      "Silver Beach (Cuddalore)", "Poompuhar Beach", "Kanniyakumari Sangam Beach"
+    ]
+  },
+  {
+    "state": "Kerala",
+    "beaches": [
+      "Kovalam Beach (Lighthouse, Hawa, and Samudra beaches)", "Varkala Beach (Papanasham Cliff beach)", 
+      "Marari Beach", "Alappuzha (Alleppey) Beach", "Cherai Beach", "Fort Kochi Beach", 
+      "Kappad Beach", "Muzhappilangad Drive-in Beach", "Bekal Beach", "Shangumughom Beach", 
+      "Kollam Beach", "Beypore Beach"
+    ]
+  },
+  {
+    "state": "Andhra Pradesh",
+    "beaches": [
+      "Rishikonda Beach", "Ramakrishna Beach (RK Beach)", "Yendada Beach", 
+      "Bheemunipatnam (Bheemili) Beach", "Yarada Beach", "Rushikonda Beach", 
+      "Kothapatnam Beach", "Chirala Beach", "Mypadu Beach", "Bhavanapadu Beach", "Nizampatnam Beach"
+    ]
+  },
+  {
+    "state": "Karnataka",
+    "beaches": [
+      "Gokarna Main Beach", "Om Beach", "Kudle Beach", "Half Moon Beach", "Paradise Beach", 
+      "Malpe Beach", "St. Mary’s Island Beach", "Kaup Beach", "Maravanthe Beach", "Panambur Beach", 
+      "Tannirbhavi Beach", "Someshwar Beach", "Murudeshwar Beach", "Karwar Beach", "Ullal Beach"
+    ]
+  },
+  {
+    "state": "Gujarat",
+    "beaches": [
+      "Shivrajpur Beach", "Mandvi Beach", "Dwarka Beach", "Okha Madhi Beach", "Tithal Beach", 
+      "Gopnath Beach", "Dumas Beach", "Suvali Beach", "Naliya Beach", "Jampore Beach", "Devka Beach"
+    ]
+  },
+  {
+    "state": "Goa",
+    "regions": [
+      {
+        "region": "North Goa",
+        "beaches": [
+          "Baga Beach", "Calangute Beach", "Anjuna Beach", "Vagator Beach", "Arambol Beach", 
+          "Candolim Beach", "Morjim Beach", "Ashwem Beach", "Sinquerim Beach", "Chapora Beach"
+        ]
+      },
+      {
+        "region": "South Goa",
+        "beaches": [
+          "Palolem Beach", "Colva Beach", "Benaulim Beach", "Agonda Beach", "Cavelossim Beach", 
+          "Varca Beach", "Majorda Beach", "Betalbatim Beach", "Bogmalo Beach", "Cabo de Rama Beach"
+        ]
+      }
+    ]
+  },
+  {
+    "state": "West Bengal",
+    "beaches": [
+      "Digha Beach", "Mandarmani Beach", "Shankarpur Beach", "Tajpur Beach", "Bakkhali Beach", 
+      "Sagar Island Beach (Gangasagar)", "Junput Beach", "Henry's Island Beach"
+    ]
+  },
+  {
+    "state": "Odisha",
+    "beaches": [
+      "Puri Beach", "Chandrabhaga Beach", "Gopalpur Beach", "Chandipur Beach", "Paradeep Beach", 
+      "Satapada Beach", "Talasari Beach"
+    ]
+  },
+  {
+    "state": "Puducherry",
+    "beaches": [
+      "Promenade Beach", "Auroville Beach", "Paradise Beach", "Serenity Beach", "Mahe Beach", "Yaram Beach"
+    ]
+  },
+  {
+    "state": "Andaman and Nicobar Islands",
+    "beaches": [
+      "Radhanagar Beach", "Elephant Beach", "Kalapathar Beach", "Laxmanpur Beach", 
+      "Bharatpur Beach", "Corbyn’s Cove", "Wandoor Beach"
+    ]
+  },
+  {
+    "state": "Lakshadweep",
+    "beaches": [
+      "Bangaram Beach", "Minicoy Thundi Beach", "Kadmat Beach", "Agatti Beach"
+    ]
+  }
+]

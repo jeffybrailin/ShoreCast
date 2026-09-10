@@ -1,4 +1,4 @@
-﻿from config import get_settings
+from config import get_settings
 
 
 def calculate_suitability_score(

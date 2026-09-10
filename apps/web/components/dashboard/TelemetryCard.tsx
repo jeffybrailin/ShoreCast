@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 import { getSuitabilityColor, getSuitabilityLabel } from "@/lib/mapConfig";
 
 interface TelemetryCardProps {
@@ -10,26 +10,25 @@ interface TelemetryCardProps {
 }
 
 export default function TelemetryCard({ title, value, unit, subtitle, score }: TelemetryCardProps) {
-  const color = score !== undefined ? getSuitabilityColor(score) : "#0ea5e9";
+  const color = score !== undefined ? getSuitabilityColor(score) : "#06B6D4";
   const label = score !== undefined ? getSuitabilityLabel(score) : null;
   return (
-    <div className="bg-[#0a0a0a] border border-[#1a1a1a] rounded-lg p-4 hover:border-[#333] transition-colors">
-      <p className="text-[#888] text-[10px] uppercase tracking-widest mb-2 font-mono">{title}</p>
-      <div className="flex items-end gap-1.5">
-        <span className="text-3xl font-bold font-mono" style={{ color: score !== undefined ? color : "#fff" }}>
+    <div className="rounded-xl p-3 transition-all"
+      style={{ background: "var(--c-card)", border: "1px solid var(--c-border)" }}>
+      <p className="text-[9px] uppercase tracking-widest font-semibold mb-1.5" style={{ color: "var(--c-muted)" }}>{title}</p>
+      <div className="flex items-end gap-1">
+        <span className="text-2xl font-black font-mono" style={{ color: score !== undefined ? color : "var(--c-text)" }}>
           {value}
         </span>
-        {unit && <span className="text-[#666] text-sm mb-1">{unit}</span>}
+        {unit && <span className="text-xs mb-0.5 font-medium" style={{ color: "var(--c-muted)" }}>{unit}</span>}
       </div>
       {label && (
-        <span
-          className="inline-block text-[10px] font-bold px-2 py-0.5 rounded mt-2"
-          style={{ backgroundColor: color, color: "#000" }}
-        >
+        <span className="inline-block text-[9px] font-bold px-2 py-0.5 rounded-full mt-1.5 text-white"
+          style={{ backgroundColor: color }}>
           {label}
         </span>
       )}
-      {subtitle && <p className="text-[#555] text-[11px] mt-1.5">{subtitle}</p>}
+      {subtitle && <p className="text-[10px] mt-1 font-medium" style={{ color: "var(--c-subtle)" }}>{subtitle}</p>}
     </div>
   );
 }

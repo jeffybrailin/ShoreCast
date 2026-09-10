@@ -1,4 +1,4 @@
-﻿import asyncpg
+import asyncpg
 import logging
 from contextlib import asynccontextmanager
 from config import get_settings

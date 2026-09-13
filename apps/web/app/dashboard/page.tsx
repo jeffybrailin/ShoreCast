@@ -48,10 +48,6 @@ function BeachCard({ beach }: { beach: typeof ALL_BEACHES[0] }) {
           )}
           {/* Gradient overlay */}
           <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)" }} />
-          {/* Score pill */}
-          <div className="absolute top-2 right-2">
-            <ScorePill score={beach.suitability_score} />
-          </div>
           {/* State tag */}
           <div className="absolute top-2 left-2">
             <span className="text-[9px] font-bold px-2 py-0.5 rounded-full text-white glass-sm">
@@ -65,14 +61,14 @@ function BeachCard({ beach }: { beach: typeof ALL_BEACHES[0] }) {
           </div>
         </div>
 
-        {/* Info strip */}
         <div className="px-3 py-2.5 flex items-center justify-between">
           <div className="flex items-center gap-1">
             <Star className="w-3 h-3 fill-amber-400 text-amber-400" />
             <span className="text-xs font-semibold" style={{ color: "var(--c-text)" }}>{beach.rating.toFixed(1)}</span>
             <span className="text-[10px]" style={{ color: "var(--c-subtle)" }}>{beach.best_season}</span>
           </div>
-          <div className="flex gap-1">
+          <div className="flex items-center gap-1">
+            <ScorePill score={beach.suitability_score} />
             {beach.tags.slice(0, 2).map(t => (
               <span key={t} className="text-[8px] font-bold px-1.5 py-0.5 rounded-full capitalize"
                 style={{ background: "var(--c-hover)", color: "var(--c-muted)" }}>
@@ -231,10 +227,10 @@ export default function DashboardPage() {
       </div>
 
       {/* ── DESKTOP LAYOUT ──────────────────────────────── */}
-      <div className="md:grid md:grid-cols-[1fr_260px] max-w-screen-2xl mx-auto w-full overflow-hidden">
+      <div className="max-w-screen-2xl mx-auto w-full">
 
-        {/* Main column */}
-        <div className="min-h-screen overflow-hidden">
+        {/* Main column — full width */}
+        <div className="min-h-screen">
           {/* Desktop hero — stacked layout, no flex justify-between */}
           <div className="hidden md:block relative overflow-hidden mx-6 mt-6 rounded-3xl"
             style={{ background: "linear-gradient(135deg, #0F172A 0%, #1E3A5F 50%, #0C4A6E 100%)" }}>
@@ -388,72 +384,8 @@ export default function DashboardPage() {
             )}
           </div>
         </div>
-
-        {/* ── DESKTOP SIDEBAR ──────────────────────────── */}
-        <aside className="hidden md:flex flex-col w-[260px] h-[calc(100vh-72px)] sticky top-[72px] overflow-y-auto overflow-x-hidden shrink-0"
-          style={{ borderLeft: "1px solid var(--c-border)", background: "var(--c-card)" }}>
-          <div className="p-4 space-y-5">
-            {/* Suitability legend */}
-            <div>
-              <p className="text-[10px] uppercase tracking-widest font-black mb-3" style={{ color: "var(--c-muted)" }}>
-                Suitability
-              </p>
-              <div className="space-y-1.5">
-                {[
-                  { color: "#10B981", label: "SAFE",     range: "75–100", desc: "Great conditions" },
-                  { color: "#F97316", label: "CAUTION",  range: "50–74",  desc: "Some risks"       },
-                  { color: "#EF4444", label: "DANGER",   range: "25–49",  desc: "Avoid swimming"   },
-                  { color: "#8B5CF6", label: "CRITICAL", range: "0–24",   desc: "Stay away"        },
-                ].map(({ color, label, range, desc }) => (
-                  <div key={label} className="flex items-center gap-2.5 rounded-xl px-2.5 py-2"
-                    style={{ background: `${color}08`, border: `1px solid ${color}20` }}>
-                    <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: color }} />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-[10px] font-black leading-none" style={{ color }}>{label}</p>
-                      <p className="text-[9px] mt-0.5 truncate" style={{ color: "var(--c-muted)" }}>{desc}</p>
-                    </div>
-                    <span className="text-[9px] font-mono font-semibold shrink-0" style={{ color: "var(--c-subtle)" }}>{range}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Stats */}
-            <div>
-              <p className="text-[10px] uppercase tracking-widest font-black mb-3" style={{ color: "var(--c-muted)" }}>Overview</p>
-              <div className="grid grid-cols-2 gap-2">
-                <StatCard icon={Waves} value={ALL_BEACHES.length} label="Beaches" color="#06B6D4" />
-                <StatCard icon={Sun} value={safeCount} label="Safe" color="#10B981" />
-                <StatCard icon={Map} value={getStates().length} label="States" color="#F59E0B" />
-                <StatCard icon={Wind} value="Live" label="Conditions" color="#8B5CF6" />
-              </div>
-            </div>
-
-            {/* Quick links */}
-            <div className="space-y-2">
-              {[
-                { href: "/chat",      icon: Bot,        label: "AI Assistant",  desc: "Ask about beaches",    color: "#F59E0B" },
-                { href: "/explore",   icon: Compass,    label: "Explore Nearby", desc: "Hotels & restaurants", color: "#06B6D4" },
-                { href: "/emergency", icon: ShieldAlert, label: "Safety",        desc: "Coastal safety info",  color: "#EF4444" },
-              ].map(({ href, icon: Icon, label, desc, color }) => (
-                <Link key={href} href={href}
-                  className="flex items-center gap-2.5 rounded-2xl p-2.5 transition-all hover:opacity-90"
-                  style={{ background: `${color}10`, border: `1px solid ${color}20` }}>
-                  <div className="w-7 h-7 rounded-xl flex items-center justify-center shrink-0" style={{ background: `${color}20` }}>
-                    <Icon className="w-3.5 h-3.5" style={{ color }} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-xs font-bold truncate" style={{ color: "var(--c-text)" }}>{label}</p>
-                    <p className="text-[9px] truncate" style={{ color: "var(--c-muted)" }}>{desc}</p>
-                  </div>
-                  <ChevronRight className="w-3 h-3 shrink-0" style={{ color: "var(--c-muted)" }} />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </aside>
-
       </div>
+
 
       <BottomNav />
     </div>

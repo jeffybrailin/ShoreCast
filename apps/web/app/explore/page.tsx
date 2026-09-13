@@ -1,27 +1,31 @@
 "use client";
 import { useState, useEffect, useCallback, useRef } from "react";
-import { MapPin, Star, ExternalLink, Phone, Globe, RefreshCw, SlidersHorizontal, X } from "lucide-react";
+import {
+  MapPin, Star, ExternalLink, Phone, Globe, RefreshCw,
+  SlidersHorizontal, X, Map, Hotel, UtensilsCrossed,
+  ShoppingBag, Landmark, Waves, AlertTriangle, Lightbulb,
+  Compass,
+} from "lucide-react";
 import BottomNav from "@/components/layout/BottomNav";
 import ThemeToggle from "@/components/ui/ThemeToggle";
 import Link from "next/link";
-import { Waves } from "lucide-react";
 
 const API = "http://localhost:8000";
 
 const CATEGORIES = [
-  { id: "all",        label: "All",         icon: "🗺️" },
-  { id: "hotel",      label: "Hotels",      icon: "🏨" },
-  { id: "restaurant", label: "Restaurants", icon: "🍽️" },
-  { id: "mall",       label: "Malls",       icon: "🛍️" },
-  { id: "attraction", label: "Attractions", icon: "🎯" },
+  { id: "all",        label: "All",         Icon: Map           },
+  { id: "hotel",      label: "Hotels",      Icon: Hotel         },
+  { id: "restaurant", label: "Restaurants", Icon: UtensilsCrossed },
+  { id: "mall",       label: "Malls",       Icon: ShoppingBag   },
+  { id: "attraction", label: "Attractions", Icon: Landmark      },
 ];
 
 const RATINGS = [
-  { label: "Any",  value: 0   },
-  { label: "2★+",  value: 2.0 },
-  { label: "3★+",  value: 3.0 },
-  { label: "4★+",  value: 4.0 },
-  { label: "4.5★+",value: 4.5 },
+  { label: "Any",   value: 0   },
+  { label: "2+",    value: 2.0 },
+  { label: "3+",    value: 3.0 },
+  { label: "4+",    value: 4.0 },
+  { label: "4.5+",  value: 4.5 },
 ];
 
 const RADII = [
@@ -75,6 +79,8 @@ function PlaceCard({ place }: { place: Place }) {
     ? `${place.distance_m}m`
     : `${(place.distance_m / 1000).toFixed(1)} km`;
 
+  const CatIcon = CATEGORIES.find(c => c.id === place.category)?.Icon ?? MapPin;
+
   return (
     <div className="rounded-2xl overflow-hidden flex flex-col" style={{ background: "var(--c-card)", border: "1px solid var(--c-border)" }}>
       {/* Photo / gradient */}
@@ -87,8 +93,8 @@ function PlaceCard({ place }: { place: Place }) {
             onError={() => setImgError(true)}
           />
         ) : (
-          <div className="w-full h-full flex flex-col items-center justify-center text-white text-4xl" style={{ background: place.gradient }}>
-            <span>{CATEGORIES.find(c => c.id === place.category)?.icon ?? "📍"}</span>
+          <div className="w-full h-full flex flex-col items-center justify-center text-white" style={{ background: place.gradient }}>
+            <CatIcon className="w-10 h-10 opacity-80" />
             <span className="text-xs mt-2 font-semibold opacity-80">{place.type_label}</span>
           </div>
         )}
@@ -128,8 +134,8 @@ function PlaceCard({ place }: { place: Place }) {
           <StarRow rating={place.rating} count={place.review_count} />
         </div>
         {place.address && (
-          <p className="text-[11px] leading-snug line-clamp-2" style={{ color: "var(--c-muted)" }}>
-            📍 {place.address}
+          <p className="text-[11px] leading-snug line-clamp-2 flex items-start gap-1" style={{ color: "var(--c-muted)" }}>
+            <MapPin className="w-3 h-3 shrink-0 mt-0.5" /> {place.address}
           </p>
         )}
         <div className="flex gap-2 mt-auto pt-1">
@@ -233,6 +239,8 @@ export default function ExplorePage() {
     if (pos) fetchPlaces(pos, category, minRating, r);
   };
 
+  const ActiveCatIcon = CATEGORIES.find(c => c.id === category)?.Icon ?? Map;
+
   return (
     <div className="min-h-screen pb-28" style={{ background: "var(--c-bg)" }}>
       {/* Header */}
@@ -240,7 +248,7 @@ export default function ExplorePage() {
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl flex items-center justify-center" style={{ background: "linear-gradient(135deg,#FBBF24,#06B6D4)" }}>
-              <span className="text-sm">🗺️</span>
+              <Compass className="w-4 h-4 text-white" />
             </div>
             <div>
               <h1 className="text-sm font-black" style={{ color: "var(--c-text)" }}>Explore Nearby</h1>
@@ -275,7 +283,7 @@ export default function ExplorePage() {
               style={category === c.id
                 ? { background: "#FBBF24", color: "#0F172A" }
                 : { background: "var(--c-hover)", color: "var(--c-muted)", border: "1px solid var(--c-border)" }}>
-              {c.icon} {c.label}
+              <c.Icon className="w-3.5 h-3.5" /> {c.label}
             </button>
           ))}
         </div>
@@ -324,7 +332,7 @@ export default function ExplorePage() {
         {!noApi && source === "osm" && (
           <div className="mb-4 flex items-start gap-2 px-4 py-3 rounded-xl text-xs"
             style={{ background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.3)", color: "#92400E" }}>
-            <span className="shrink-0">💡</span>
+            <Lightbulb className="w-4 h-4 shrink-0 mt-0.5" style={{ color: "#F59E0B" }} />
             <span>
               Add <code className="font-mono px-1 rounded" style={{ background: "rgba(251,191,36,0.2)" }}>GOOGLE_PLACES_API_KEY</code> to <strong>apps/api/.env</strong> for real photos, accurate ratings, and opening hours from Google Maps.
             </span>
@@ -333,7 +341,9 @@ export default function ExplorePage() {
 
         {locError && (
           <div className="mb-4 text-center py-8 space-y-2">
-            <p className="text-2xl">📍</p>
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto" style={{ background: "rgba(239,68,68,0.1)" }}>
+              <MapPin className="w-6 h-6" style={{ color: "#EF4444" }} />
+            </div>
             <p className="text-sm font-bold" style={{ color: "var(--c-text)" }}>Location Required</p>
             <p className="text-xs" style={{ color: "var(--c-muted)" }}>Please enable location access to find nearby places.</p>
           </div>
@@ -341,7 +351,9 @@ export default function ExplorePage() {
 
         {noApi && (
           <div className="mb-4 text-center py-8 space-y-2">
-            <p className="text-2xl">⚠️</p>
+            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto" style={{ background: "rgba(239,68,68,0.1)" }}>
+              <AlertTriangle className="w-6 h-6" style={{ color: "#EF4444" }} />
+            </div>
             <p className="text-sm font-bold" style={{ color: "var(--c-text)" }}>API Server Offline</p>
             <p className="text-xs" style={{ color: "var(--c-muted)" }}>Run the FastAPI backend to see nearby places.</p>
           </div>
@@ -351,7 +363,7 @@ export default function ExplorePage() {
         {!loading && places.length > 0 && (
           <p className="text-xs font-semibold mb-3" style={{ color: "var(--c-muted)" }}>
             {places.length} place{places.length !== 1 ? "s" : ""} found
-            {minRating > 0 && ` · ${minRating}★+ only`}
+            {minRating > 0 && ` · ${minRating}+ rating`}
           </p>
         )}
 
@@ -365,8 +377,12 @@ export default function ExplorePage() {
 
         {!loading && !locError && !noApi && places.length === 0 && (
           <div className="text-center py-16 space-y-2">
-            <p className="text-3xl">{CATEGORIES.find(c => c.id === category)?.icon ?? "🗺️"}</p>
-            <p className="text-sm font-bold" style={{ color: "var(--c-text)" }}>No {category === "all" ? "places" : CATEGORIES.find(c=>c.id===category)?.label} found</p>
+            <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto" style={{ background: "var(--c-card)", border: "1px solid var(--c-border)" }}>
+              <ActiveCatIcon className="w-7 h-7" style={{ color: "var(--c-muted)" }} />
+            </div>
+            <p className="text-sm font-bold" style={{ color: "var(--c-text)" }}>
+              No {category === "all" ? "places" : CATEGORIES.find(c => c.id === category)?.label} found
+            </p>
             <p className="text-xs" style={{ color: "var(--c-muted)" }}>Try increasing the radius or lowering the rating filter.</p>
           </div>
         )}

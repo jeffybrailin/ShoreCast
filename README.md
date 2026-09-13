@@ -1,4 +1,4 @@
-﻿# Shorecast  — Agentic AI Coastal Safety Platform
+﻿# Shorecast  - Agentic AI Coastal Safety Platform
 
 > A production-grade, multi-agent AI platform for real-time coastal safety, marine intelligence, and travel planning. 100% free-tier infrastructure.
 

@@ -1,4 +1,4 @@
-﻿# Shorecast 🌊 — Agentic AI Coastal Safety Platform
+﻿# Shorecast  — Agentic AI Coastal Safety Platform
 
 > A production-grade, multi-agent AI platform for real-time coastal safety, marine intelligence, and travel planning. 100% free-tier infrastructure.
 
@@ -60,27 +60,27 @@ Frontend: http://localhost:3000
 
 ## Features
 
-### 🗺️ Geospatial Dashboard
+###  Geospatial Dashboard
 - MapLibre GL JS with OpenMapTiles (free, no billing)
 - Color-coded beach suitability nodes (blue/orange gradient — colorblind friendly)
 - Real-time suitability scores overlaid on map
 - Click any beach for live telemetry panel
 
-### 🤖 Multi-Agent AI
+###  Multi-Agent AI
 - **Planner Agent**: Parses natural language → queries Open-Meteo + OSM → builds itineraries
 - **Sentinel Agent**: Background loop monitoring all beaches for wave anomalies → triggers alerts
 - Tool streaming: watch the agent's thought process in real-time
 
-### 🎤 Voice Input
+###  Voice Input
 - Native Web Speech API (free, no external service)
 - Speak: "Is Marina Beach safe tomorrow?" → agent responds with full analysis
 
-### 🔐 Session Governance
+###  Session Governance
 - JWT auth with Redis-backed session tracking
 - Anomalous location detection (>500km shift → force logout)
 - Redis pub/sub for real-time alert broadcasting
 
-### 📊 Suitability Engine
+###  Suitability Engine
 Multi-variable weighted score (0-100):
 - Wave height (35% weight) — Open-Meteo Marine API
 - Tide level (25% weight) — Open-Meteo Marine API
